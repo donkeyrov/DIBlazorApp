@@ -1,0 +1,35 @@
+﻿@page "/"
+@using DiModals.Entities;
+@using BiDataAccess.Repositories;
+@inject IEbooksRepository service;
+
+<h3>Ebooks</h3>
+
+<div>
+    <table class="table">
+        <thead class="thead-dark"   >
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>            
+        </thead>
+        <tbody>
+            @foreach (var ebook in GetEbooks())
+            {
+            <tr>
+                <td>@ebook.EbookId</td>
+                <td>@ebook.Title</td>
+                <td>@ebook.Author</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@code {
+
+    protected List<Ebook> GetEbooks()
+    {
+        return service.GetEbooks();
+    }
+}
